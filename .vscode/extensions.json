@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dariofuzinato.vue-peek",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "hollowtree.vue-snippets",
+    "lannonbr.vscode-js-annotations",
+    "octref.vetur",
+    "pflannery.vscode-versionlens",
+    "VisualStudioExptTeam.vscodeintellicode"
+  ]
+}
