@@ -19,7 +19,10 @@ function createWindow(): void {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 400,
+    minHeight: 600 / 2 + 48,
     frame: false,
+    backgroundColor: '#1E1E1E',
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true

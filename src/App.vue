@@ -33,8 +33,15 @@
         </v-btn>
       </v-hover>
     </v-app-bar>
-    <v-content>
-      <v-data-table :headers="headers" :items="series" hide-default-footer>
+    <v-content v-resize="onResize">
+      <v-data-table
+        :headers="headers"
+        :items="series"
+        fixed-header
+        :height="tableHeight"
+        hide-default-footer
+        disable-pagination
+      >
         <template v-slot:item.name="{ item }">
           <v-edit-dialog :return-value.sync="item.name" large @save="persistStore()">
             {{ item.name }}
@@ -113,12 +120,16 @@ export default Vue.extend({
         { value: 'status', text: 'Status' },
         { value: 'actions', text: '', align: 'end', sortable: false }
       ],
+      tableHeight: 600 - 48,
       createDialog: false,
       createSerie: {} as Partial<Serie>,
       series: [] as Serie[]
     };
   },
   methods: {
+    onResize(): void {
+      this.tableHeight = window.innerHeight - (this as any).$vuetify.application.top;
+    },
     addSerie(): void {
       if (this.createSerie.name) {
         this.series.push({
@@ -127,6 +138,7 @@ export default Vue.extend({
           nextEpisode: 1,
           status: Status.PLAN_TO_WATCH
         });
+        this.createSerie = {};
       }
       this.createDialog = false;
     },
@@ -176,6 +188,7 @@ export default Vue.extend({
   },
   created() {
     this.loadStore();
+    this.onResize();
   }
 });
 </script>
