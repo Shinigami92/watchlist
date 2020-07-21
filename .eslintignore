@@ -2,3 +2,4 @@ node_modules
 dist
 main.js
 vue.config.js
+.eslintrc.js

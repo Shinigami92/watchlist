@@ -33,7 +33,7 @@
         </v-btn>
       </v-hover>
     </v-app-bar>
-    <v-content v-resize="onResize">
+    <v-main v-resize="onResize">
       <v-data-table
         :headers="headers"
         :items="series"
@@ -85,7 +85,7 @@
           </v-btn>
         </template>
       </v-data-table>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

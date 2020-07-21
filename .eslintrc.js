@@ -70,7 +70,7 @@ module.exports = {
     '@typescript-eslint/indent': ['off', 2],
 
     '@typescript-eslint/array-type': ['warn', { default: 'array-simple', readonly: 'generic' }],
-    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'warn',
     '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
     '@typescript-eslint/explicit-member-accessibility': 'error',
