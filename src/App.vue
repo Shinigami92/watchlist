@@ -6,7 +6,7 @@
       <v-dialog v-model="createDialog">
         <template v-slot:activator="{ on }">
           <v-btn icon small v-on="on">
-            <v-icon>add</v-icon>
+            <v-icon>mdi-plus</v-icon>
           </v-btn>
         </template>
         <v-card>
@@ -29,7 +29,7 @@
       <v-divider class="mx-3" inset vertical></v-divider>
       <v-hover v-slot:default="{ hover }">
         <v-btn class="mr-0" color="red" :icon="!hover" :small="!hover" :fab="hover" :x-small="hover" @click="exit()">
-          <v-icon>close</v-icon>
+          <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-hover>
     </v-app-bar>
@@ -52,20 +52,20 @@
         </template>
         <template v-slot:item.season="{ item }">
           <v-btn icon x-small @click="decrementSeason(item)">
-            <v-icon>remove_circle_outline</v-icon>
+            <v-icon>mdi-minus-circle-outline</v-icon>
           </v-btn>
           {{ item.season }}
           <v-btn icon x-small @click="incrementSeason(item)">
-            <v-icon>add_circle</v-icon>
+            <v-icon>mdi-plus-circle</v-icon>
           </v-btn>
         </template>
         <template v-slot:item.nextEpisode="{ item }">
           <v-btn icon x-small @click="decrementEpisode(item)">
-            <v-icon>remove_circle_outline</v-icon>
+            <v-icon>mdi-minus-circle-outline</v-icon>
           </v-btn>
           {{ item.nextEpisode }}
           <v-btn icon x-small @click="incrementEpisode(item)">
-            <v-icon>add_circle</v-icon>
+            <v-icon>mdi-plus-circle</v-icon>
           </v-btn>
         </template>
         <template v-slot:item.status="{ item }">
@@ -81,7 +81,7 @@
         </template>
         <template v-slot:item.actions="{ index }">
           <v-btn icon small @click="removeSerie(index)">
-            <v-icon>delete</v-icon>
+            <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>
       </v-data-table>

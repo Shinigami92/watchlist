@@ -13,7 +13,8 @@ module.exports = {
   ],
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    project: ['./tsconfig.json']
+    project: ['./tsconfig.json'],
+    warnOnUnsupportedTypeScriptVersion: false
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
@@ -24,7 +25,6 @@ module.exports = {
     'max-len': ['warn', { code: 120 }],
     'no-case-declarations': 'warn',
     'no-constant-condition': 'error',
-    'no-shadow': 'warn',
     'no-unused-expressions': 'error',
     'no-useless-concat': 'error',
     'prefer-template': 'error',
@@ -50,31 +50,33 @@ module.exports = {
     // TODO christopher 2019-09-20: Use this rule
     // camelcase: 'error',
 
-    // TODO christopher 2019-09-20: Rule should behave like variable-name -> ban-keywords
-    // 'id-blacklist': [
-    //    'error',
-    //    'any',
-    //    'Number',
-    //    'number',
-    //    'String',
-    //    'string',
-    //    'Boolean',
-    //    'boolean',
-    //    'Undefined',
-    //    'undefined'
-    // ],
+    'id-denylist': [
+      'error',
+      'any',
+      'Number',
+      'number',
+      'String',
+      'string',
+      'Boolean',
+      'boolean',
+      'Undefined',
+      'undefined'
+    ],
 
     semi: ['off'],
     '@typescript-eslint/semi': ['error'],
     indent: ['off', 2],
     '@typescript-eslint/indent': ['off', 2],
 
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['warn'],
+
     '@typescript-eslint/array-type': ['warn', { default: 'array-simple', readonly: 'generic' }],
-    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
     '@typescript-eslint/ban-types': 'warn',
     '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
     '@typescript-eslint/explicit-member-accessibility': 'error',
-    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
     // TODO christopher 2020-01-24: Waiting on https://github.com/typescript-eslint/typescript-eslint/issues/929
     '@typescript-eslint/member-ordering': [
       'warn',
@@ -138,7 +140,6 @@ module.exports = {
     '@typescript-eslint/prefer-readonly': 'warn',
     '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
-    '@typescript-eslint/prefer-ts-expect-error': 'off', // TODO christopher 2020-04-14: Enable with TS 3.9
     '@typescript-eslint/require-await': 'warn',
     '@typescript-eslint/typedef': [
       'warn',
