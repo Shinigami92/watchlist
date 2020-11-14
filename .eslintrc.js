@@ -63,6 +63,8 @@ module.exports = {
       'undefined'
     ],
 
+    'vue/valid-v-slot': 'off',
+
     semi: ['off'],
     '@typescript-eslint/semi': ['error'],
     indent: ['off', 2],
