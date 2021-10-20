@@ -1,6 +1,14 @@
 import 'quasar';
 
 declare module 'quasar' {
+  type QOptionsGroupOption<V = any> = Omit<
+    NonNullable<QOptionGroupProps['options']>[0],
+    'label' | 'value'
+  > & {
+    label: string;
+    value: V;
+  };
+
   type QTableColumn<
     Row extends Record<string, any> = any,
     K = Row extends Record<string, any> ? keyof Row : string,

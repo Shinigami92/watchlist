@@ -1,4 +1,4 @@
-export const enum Status {
+export enum Status {
   CURRENTLY_WATCHING = 'Currently Watching',
   PLAN_TO_WATCH = 'Plan to Watch',
 }

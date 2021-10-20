@@ -36,6 +36,18 @@ q-page
         @click="createDialog = true"
       )
 
+    template(#body-cell-name="props")
+      q-td(:props="props")
+        span(v-text="props.value")
+        q-popup-edit(v-model="props.row.name", auto-save, v-slot="scope")
+          q-input(
+            v-model="scope.value",
+            label="Name",
+            counter,
+            autofocus,
+            @keyup.enter="scope.set"
+          )
+
     template(#body-cell-season="props")
       q-td(:props="props")
         q-btn(
@@ -76,6 +88,16 @@ q-page
           @click="incrementEpisode(props.key)"
         )
 
+    template(#body-cell-status="props")
+      q-td(:props="props")
+        span(v-text="props.value")
+        q-popup-edit(v-model="props.row.status", auto-save, v-slot="scope")
+          q-option-group(
+            v-model="scope.value",
+            type="radio",
+            :options="statusOptions"
+          )
+
     template(#body-cell-actions="props")
       q-td(:props="props")
         q-btn(
@@ -87,7 +109,7 @@ q-page
 </template>
 
 <script lang="ts">
-import type { QTableColumn } from 'quasar';
+import type { QOptionsGroupOption, QTableColumn } from 'quasar';
 import type { Serie, UserPersistentStore } from 'src/shared/models';
 import { Status } from 'src/shared/models';
 import type { Ref } from 'vue';
@@ -135,6 +157,11 @@ export default defineComponent({
 
     const createDialog: Ref<boolean> = ref(false);
     const createSerie: Ref<Partial<Serie>> = ref({});
+
+    const statusOptions: Array<QOptionsGroupOption<Status>> = [
+      { label: Status.CURRENTLY_WATCHING, value: Status.CURRENTLY_WATCHING },
+      { label: Status.PLAN_TO_WATCH, value: Status.PLAN_TO_WATCH },
+    ];
 
     const findSerie: (name: string) => Serie | undefined = (name) =>
       series.value.find((serie) => serie.name === name);
@@ -213,6 +240,7 @@ export default defineComponent({
       decrementSeason,
       incrementEpisode,
       decrementEpisode,
+      statusOptions,
     };
   },
 });
