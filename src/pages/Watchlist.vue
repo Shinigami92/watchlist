@@ -136,6 +136,9 @@ export default defineComponent({
     const createDialog: Ref<boolean> = ref(false);
     const createSerie: Ref<Partial<Serie>> = ref({});
 
+    const findSerie: (name: string) => Serie | undefined = (name) =>
+      series.value.find((serie) => serie.name === name);
+
     const addSerie: () => void = () => {
       if (createSerie.value.name) {
         series.value.push({
@@ -157,9 +160,7 @@ export default defineComponent({
     };
 
     const incrementSeason: (name: string) => void = (name) => {
-      const serie: Serie | undefined = series.value.find(
-        (serie) => serie.name === name
-      );
+      const serie: Serie | undefined = findSerie(name);
       if (serie) {
         serie.season++;
         serie.nextEpisode = 1;
@@ -167,27 +168,21 @@ export default defineComponent({
     };
 
     const decrementSeason: (name: string) => void = (name) => {
-      const serie: Serie | undefined = series.value.find(
-        (serie) => serie.name === name
-      );
+      const serie: Serie | undefined = findSerie(name);
       if (serie && serie.season > 1) {
         serie.season--;
       }
     };
 
     const incrementEpisode: (name: string) => void = (name) => {
-      const serie: Serie | undefined = series.value.find(
-        (serie) => serie.name === name
-      );
+      const serie: Serie | undefined = findSerie(name);
       if (serie) {
         serie.nextEpisode++;
       }
     };
 
     const decrementEpisode: (name: string) => void = (name) => {
-      const serie: Serie | undefined = series.value.find(
-        (serie) => serie.name === name
-      );
+      const serie: Serie | undefined = findSerie(name);
       if (serie && serie.nextEpisode > 1) {
         serie.nextEpisode--;
       }
