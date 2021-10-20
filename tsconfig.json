@@ -1,24 +1,6 @@
 {
+  "extends": "@quasar/app/tsconfig-preset",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
-    "noUnusedLocals": true,
-    "allowJs": true,
-    "downlevelIteration": true,
-    "removeComments": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+    "baseUrl": "."
+  }
 }

@@ -1,5 +1,9 @@
-node_modules
-dist
-main.js
-vue.config.js
+/dist
+/src-bex/www
+/src-capacitor
+/src-cordova
+/.quasar
+/node_modules
 .eslintrc.js
+babel.config.js
+/src-ssr
