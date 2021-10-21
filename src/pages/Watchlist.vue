@@ -32,7 +32,7 @@ q-page
       q-btn(
         label="Add Serie",
         color="primary",
-        icon="add",
+        icon="mdi-plus",
         @click="createDialog = true"
       )
 
@@ -51,7 +51,7 @@ q-page
     template(#body-cell-season="props")
       q-td(:props="props")
         q-btn(
-          icon="remove",
+          icon="mdi-minus",
           outline,
           size="xs",
           round,
@@ -60,7 +60,7 @@ q-page
         )
         span.q-mx-sm(v-text="props.value")
         q-btn(
-          icon="add",
+          icon="mdi-plus",
           outline,
           size="xs",
           round,
@@ -71,7 +71,7 @@ q-page
     template(#body-cell-nextEpisode="props")
       q-td(:props="props")
         q-btn(
-          icon="remove",
+          icon="mdi-minus",
           outline,
           size="xs",
           round,
@@ -80,7 +80,7 @@ q-page
         )
         span.q-mx-sm(v-text="props.value")
         q-btn(
-          icon="add",
+          icon="mdi-plus",
           outline,
           size="xs",
           round,
@@ -103,7 +103,7 @@ q-page
         q-btn(
           flat,
           color="negative",
-          icon="delete",
+          icon="mdi-delete",
           @click="removeSerie(props.key)"
         )
 </template>
