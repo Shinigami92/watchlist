@@ -24,7 +24,7 @@ function createWindow(): void {
     width: 800,
     height: 600,
     minWidth: 400,
-    minHeight: 600 / 2 + 48,
+    minHeight: 600 / 2 + 32,
     frame: false,
     backgroundColor: '1E1E1E',
     autoHideMenuBar: true,
@@ -43,6 +43,8 @@ function createWindow(): void {
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
     mainWindow.webContents.openDevTools();
+    // increase width for dev tools
+    mainWindow.setSize(800 + 723, 600);
   } else {
     // we're on production; no access to devtools pls
     mainWindow.webContents.on('devtools-opened', () => {
