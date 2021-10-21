@@ -1,6 +1,6 @@
 import { enable, initialize } from '@electron/remote/main';
 import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
-import { readFileSync, unlinkSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
 
 try {
@@ -62,6 +62,9 @@ app.on('ready', createWindow);
 const STORE_FILE_PATH: string = join(app.getPath('userData'), 'store.json');
 
 ipcMain.handle('loadStore', (): unknown => {
+  if (!existsSync(STORE_FILE_PATH)) {
+    writeFileSync(STORE_FILE_PATH, JSON.stringify({ series: [] }));
+  }
   return JSON.parse(readFileSync(STORE_FILE_PATH, 'utf8'));
 });
 
