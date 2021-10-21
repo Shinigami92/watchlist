@@ -5,7 +5,7 @@ q-dialog(v-model="createDialog", persistent)
       .text-h6 Add Serie
 
     q-card-section.row.items-center
-      q-input(v-model="createSerie.name", label="Name", clearable)
+      q-input(v-model="createSerie.name", label="Name", clearable, outlined)
 
     q-card-actions(align="right")
       q-btn(label="Cancel", flat, color="primary", v-close-popup)
@@ -23,7 +23,7 @@ q-page
     style="height: calc(100vh - 32px)",
     flat,
     :columns="columns",
-    :rows="series",
+    :rows="filteredSeries",
     row-key="name",
     virtual-scroll,
     :rows-per-page-options="[0]"
@@ -35,6 +35,19 @@ q-page
         icon="mdi-plus",
         @click="createDialog = true"
       )
+
+      q-space
+
+      q-input(
+        v-model="search",
+        type="search",
+        label="Search",
+        clearable,
+        dense,
+        outlined
+      )
+        template(#append)
+          q-icon(name="mdi-magnify")
 
     template(#body-cell-name="props")
       q-td(:props="props")
@@ -112,8 +125,8 @@ q-page
 import type { QOptionsGroupOption, QTableColumn } from 'quasar';
 import type { Serie, UserPersistentStore } from 'src/shared/models';
 import { Status } from 'src/shared/models';
-import type { Ref } from 'vue';
-import { defineComponent, onBeforeMount, ref, watch } from 'vue';
+import type { ComputedRef, Ref } from 'vue';
+import { computed, defineComponent, onBeforeMount, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'Watchlist',
@@ -162,6 +175,15 @@ export default defineComponent({
       { label: Status.CURRENTLY_WATCHING, value: Status.CURRENTLY_WATCHING },
       { label: Status.PLAN_TO_WATCH, value: Status.PLAN_TO_WATCH },
     ];
+
+    const search: Ref<string | null> = ref(null);
+
+    const filteredSeries: ComputedRef<Serie[]> = computed(() => {
+      const searchLowerCaseValue: string = search.value?.toLowerCase() ?? '';
+      return series.value.filter((serie) =>
+        serie.name.toLowerCase().includes(searchLowerCaseValue)
+      );
+    });
 
     const findSerie: (name: string) => Serie | undefined = (name) =>
       series.value.find((serie) => serie.name === name);
@@ -230,8 +252,9 @@ export default defineComponent({
 
     return {
       columns,
-      series,
       pagination,
+      search,
+      filteredSeries,
       createDialog,
       createSerie,
       addSerie,

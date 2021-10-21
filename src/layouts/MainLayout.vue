@@ -6,7 +6,7 @@ q-layout(view="hHh lpR fFf")
 
       q-space
 
-      q-btn(dense, flat, icon="close", @click="closeApp")
+      q-btn(dense, flat, icon="mdi-close", @click="closeApp")
 
   q-page-container
     router-view
