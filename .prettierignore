@@ -1,2 +1,3 @@
+.quasar/
 dist/
 yarn.lock
