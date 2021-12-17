@@ -122,7 +122,7 @@ q-page
 </template>
 
 <script lang="ts">
-import type { QOptionsGroupOption, QTableColumn } from 'quasar';
+import type { QOptionsGroupOption, QTableProps } from 'quasar';
 import type { Serie, UserPersistentStore } from 'src/shared/models';
 import { Status } from 'src/shared/models';
 import type { ComputedRef, Ref } from 'vue';
@@ -131,7 +131,7 @@ import { computed, defineComponent, onBeforeMount, ref, watch } from 'vue';
 export default defineComponent({
   name: 'Watchlist',
   setup() {
-    const columns: Array<QTableColumn<Serie>> = [
+    const columns: Array<NonNullable<QTableProps['columns']>[0]> = [
       {
         name: 'name',
         label: 'Name',
